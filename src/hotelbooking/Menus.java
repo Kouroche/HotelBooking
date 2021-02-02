@@ -73,13 +73,32 @@ public class Menus {
         
         System.out.println("What would you like to do?");
         System.out.println("1. Create an account");
-        System.out.println("2. Show Different Room Categories");
+        System.out.println("2. Update your account");
         System.out.println("3. Book a Room");
-        System.out.println("4. ");
-        System.out.println("5. ");
-        System.out.println("6. ");
+        System.out.println("4. Update your booking");
+        System.out.println("5. Order food");
+        System.out.println("6. Check out");
         System.out.println("0. Return to Start menu");
 
+    }
+    
+    public static int userInput(int a, int b) {
+        boolean continueLoop = true;
+        int userInput = 0;
+        
+        while (continueLoop) {
+            try {
+                userInput = Integer.parseInt(sc.nextLine());
+                if (userInput >= a && userInput <= b) {
+                    continueLoop = false;
+                } else {
+                    System.out.println("Choose a number from the menu.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Input only numbers");
+            }
+        }
+        return userInput;
     }
     
     public static int userInputCustomerMenu() {
@@ -108,11 +127,10 @@ public class Menus {
                     HotelBooking.createAnAccount();
                     break;
                 case 2:
-                    
-                    //Method...
+                    HotelBooking.updateCustomer();
                     break;
                 case 3:
-                    HotelBooking.showRoom();
+                    HotelBooking.showRooms();
                     HotelBooking.bookRoom();
                     //Method...
                     break;
@@ -149,15 +167,15 @@ public class Menus {
         
         System.out.println("\nWelcome Dear receptionist!");
         System.out.println("What would you like to do?");
-        System.out.println("1. ");
-        System.out.println("2. ");
-        System.out.println("3. ");
-        System.out.println("4. ");
-        System.out.println("5. ");
-        System.out.println("6. ");
-        System.out.println("7. ");
-        System.out.println("8. ");
-        System.out.println("9. ");
+        System.out.println("1. Register customer");
+        System.out.println("2. Update customer");
+        System.out.println("3. Delete customer");
+        System.out.println("4. Search customer");
+        System.out.println("5. Book room");
+        System.out.println("6. Update booking");
+        System.out.println("7. Delete booking");
+        System.out.println("8. Order food");
+        System.out.println("9. Billing / Check out");
         System.out.println("0. Return to Start menu");
 
     }
