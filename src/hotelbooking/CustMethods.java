@@ -20,6 +20,7 @@ public class CustMethods {
     
     
     public static void createAnAccount() throws SQLException{
+        System.out.println("");
         String name;
         int phoneNo = 0;
         boolean continueLoop = true;

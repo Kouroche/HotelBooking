@@ -138,7 +138,11 @@ public class Menus {
                     //Method...
                     break;
                 case 5:
-                    //Method...
+                    OrderFood.printFoodMenu();
+                    OrderFood.yourOrder();
+                    
+                    //int userInput = userInput(0, 6);
+                    //OrderFood.switchFoodMenu(userInput);
                     break;
                 case 6:
                     //Method...

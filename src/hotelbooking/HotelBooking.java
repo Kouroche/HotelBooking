@@ -11,7 +11,7 @@ public class HotelBooking {
 
     private static final String url = "jdbc:mysql://localhost:3306/hotel_booking?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String user = "root";
-                     private static final String password = "EGET PASSWORD";
+                                                                                                                    private static final String password = "resA2013MS";
     private static Statement sqlStatement = null; 
     private static Connection connection = null;
     private static boolean continueLoop = true;
