@@ -35,6 +35,95 @@ public class HotelBooking {
 
     }
     
+    public static void checkOut() throws SQLException {
+        int roomNo = 0;
+        int customerId = 0;
+        boolean continueLoop1 = true;
+        boolean continueLoop2 = true;
+
+        System.out.println("Thank you for staying at our Hotel!");
+        System.out.println("To check out please enter your customer number.");
+        while (continueLoop1) {
+            try {
+                customerId = Integer.parseInt(sc.nextLine());
+                if (customerId >= 1 && customerId <= 1000) {
+                    continueLoop1 = false;
+                } else {
+                    System.out.println(" You can only choose 1-1000 ");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Input only numbers.");
+            }
+        }
+
+        System.out.println("Please enter room number.");
+        while (continueLoop2) {
+            try {
+                roomNo = Integer.parseInt(sc.nextLine());
+                if (roomNo >= 1 && roomNo <= 8) {
+                    continueLoop2 = false;
+                } else {
+                    System.out.println(" You can only choose 1-8 ");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Input only numbers.");
+            }
+        }
+
+        System.out.println("Room details:");
+        ResultSet result2 = sqlStatement.executeQuery("SELECT room_id, room_name, room_price FROM room WHERE room_id = " + roomNo + ";");
+        // hämta antal kolumner
+        int columnCount2 = result2.getMetaData().getColumnCount();
+        // hämta alla kolmnnamn
+        String[] columnNames2 = new String[columnCount2];
+        for (int i = 0; i < columnCount2; i++) {
+            columnNames2[i] = result2.getMetaData().getColumnName(i + 1);
+        }
+
+        // lägg kolumnnamn i string array
+        for (String columnName2 : columnNames2) {
+            System.out.print(PadRight(columnName2));
+        }
+
+        while (result2.next()) {
+            System.out.println();
+            // hämta data för alla kolumner för den nuvarande raden
+            for (String columnName : columnNames2) {
+                String value = result2.getString(columnName);
+
+                if (value == null) {
+                    value = "null";
+                }
+
+                System.out.print(PadRight(value));
+            }
+        }
+        //Here available chenges from no to yes when customer checks out.
+        ResultSet result = sqlStatement.executeQuery("SELECT room_id FROM room WHERE  room_id = " + roomNo + ";");
+
+        int columnCount = result.getMetaData().getColumnCount();
+        String[] columnNames = new String[columnCount];
+
+        for (int i = 0; i < columnCount; i++) {
+            columnNames[i] = result.getMetaData().getColumnName(i + 1);
+        }
+
+        while (result.next()) {
+            System.out.println();
+
+            for (String columnName : columnNames) {
+
+                String value = result.getString(columnName);
+                roomNo = Integer.parseInt(value);
+            }
+        }
+        sqlStatement.executeUpdate("UPDATE room SET room_available = 'yes' WHERE  room_id = " + roomNo + ";");
+        
+        
+        System.out.println();
+        
+    }
+    
     public static void updateCustomer() throws SQLException {
         
         System.out.println("Enter customer id:");

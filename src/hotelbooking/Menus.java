@@ -145,7 +145,7 @@ public class Menus {
                     //OrderFood.switchFoodMenu(userInput);
                     break;
                 case 6:
-                    //Method...
+                    HotelBooking.checkOut();
                     break;
                 case 0:
                     System.out.println("You will now return to the Start Menu\n");
